@@ -19,6 +19,7 @@ We will use this branch for working on our project
    - In the list, expand Git, select projects from git, select clone URI
    - Get the URI from your github account (this has to be done after forking your online repo)
    - input your details
+   - while selecting branch, select shared and change remote nane from origin to shared as well
    - finish the next steps
    
 3) Setting up working java project
@@ -32,5 +33,5 @@ We will use this branch for working on our project
    - Click finish
    - When your run the project, it runs
 
- 4) Congratulations !! Continue coding.
+4) Congratulations !! Continue coding.
  

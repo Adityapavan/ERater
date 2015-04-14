@@ -35,11 +35,13 @@ public class ProgramDriver implements Runnable{
 				
 				try {
 					Trainer tr = new Trainer(folder_path);
-					tr.checkGrammar();
+					tr.getScores();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				//changes done here
+				catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
 				
 				UserInterface.progressbar.setIndeterminate(false);
 				UserInterface.resultarea.append("Finished training..\n");

@@ -2,9 +2,11 @@ package Train;
 
 import java.io.File;
 import java.io.IOException;
-import Syntax.AgreementCheck;
+
+import cs421.PosTagger;
 import Syntax.SequenceCheck;
 import Syntax.SpellCheck;
+import Syntax.SubjectVerbCheck;
 import Syntax.TenseCheck;
 
 public class Trainer {
@@ -14,11 +16,11 @@ public class Trainer {
 	private String high_folder;
 	
 	SpellCheck spell;
-	AgreementCheck agreement;
+	SubjectVerbCheck subjectverb;
 	TenseCheck tense;
 	SequenceCheck sequence;
 	
-	public Trainer(String folder_path) throws IOException {
+	public Trainer(String folder_path) throws IOException, ClassNotFoundException {
 		File[] parent = new File(folder_path).listFiles();
 		for(File sub: parent){
 			if(sub.getName().contains("low")){
@@ -32,13 +34,14 @@ public class Trainer {
 			}
 		}
 		
+		PosTagger posTagger = new PosTagger("lib\\models\\english-left3words-distsim.tagger.");
 		spell = new SpellCheck();
-		agreement = new AgreementCheck();
-		tense = new TenseCheck();
+		subjectverb = new SubjectVerbCheck();
+		tense = new TenseCheck(posTagger);
 		sequence = new SequenceCheck();
 	}
 	
-	public void checkGrammar() throws IOException{
+	public void getScores() throws IOException{
 		File[] low_files = new File(low_folder).listFiles();
 		for(File low_file : low_files){
 			System.out.println(low_file.getName() + " --- " + spell.getSpellScores(low_file));

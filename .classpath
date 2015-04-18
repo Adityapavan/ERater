@@ -11,5 +11,7 @@
 	<classpathentry kind="lib" path="C:/Users/Aditya/git/ERater/lib/stanford-postagger-3.5.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Aditya/git/ERater/lib/stanford-postagger-3.5.1-javadoc.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Aditya/git/ERater/lib/stanford-postagger-3.5.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Aditya/git/ERater/lib/stanford-parser.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Aditya/git/ERater/lib/stanford-parser-2.0.4-models.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

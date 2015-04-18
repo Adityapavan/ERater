@@ -1,6 +1,7 @@
 package cs421;
 import java.io.IOException;
 
+import Test.Tester;
 import Train.Trainer;
 
 /**
@@ -66,7 +67,15 @@ public class ProgramDriver implements Runnable{
 				UserInterface.progressbar.setIndeterminate(true);
 				UserInterface.progressbar.setVisible(true);
 				
-				//changes done here
+				try {
+					Tester tr = new Tester(folder_path);
+					tr.getScores();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
 				
 				UserInterface.resultarea.append("Finished Testing..\n");
 				UserInterface.progressbar.setIndeterminate(false);

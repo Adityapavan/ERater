@@ -18,7 +18,7 @@ public class SpellCheck {
 	private Directory directory;
 	private SpellChecker spellChecker;
 	private ArrayList<String> bi_words;
-	private LengthCheck lengthcheck;
+	
 	
 	public SpellCheck() throws IOException{
 		dir = new File("spellchecker");
@@ -31,21 +31,17 @@ public class SpellCheck {
 		while((temp = bin.readLine()) != null){
 			bi_words.add(temp.trim());
 		}
-		lengthcheck = new LengthCheck();
 		bin.close();
 	}
 	
-	//returns a string with combination of number of spelling mistakes and length of essay . Both are separated by _
-	public String getSpellScores(File file) throws IOException{
+	//returns number of spelling mistakes.
+	public String getSpellScores(String[] sentences) throws IOException{
 		ArrayList<String> words = new ArrayList<String>();
 		int counter = 0;
 		
-		lengthcheck.splitSentences(file);
-		String[] sentences = lengthcheck.getSplitSentences();
-		
 		//tokenizer code
 		for(int i=0; i<sentences.length; i++){
-			String[] tokens = sentences[i].replaceAll("[\"'/()}{*&^$@!#~]", "").replaceAll("[-.?,:;]", " ").split("\\s+");
+			String[] tokens = sentences[i].replaceAll("[\"/()}{*&^$@!#~]", "").replaceAll("[-.?,:;]", " ").split("\\s+");
 			for(int j=0; j<tokens.length; j++){
 				if(tokens[j] != null && !tokens[j].isEmpty()){
 					words.add(tokens[j].trim());
@@ -60,7 +56,7 @@ public class SpellCheck {
 			}
 		}
 		
-		return (counter + "_" + lengthcheck.getNumberOfSentences());
+		return counter + "_" + words.size();
 	}
 	
 	//check if a word is a numeric

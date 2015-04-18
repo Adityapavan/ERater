@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -49,6 +50,7 @@ public class UserInterface {
 	public static JTextField filetext;
 	public static JButton filebutton, proceedbutton, cancelbutton ;
 	public static JProgressBar progressbar;
+	public static JScrollPane scrollpane;
 	ProgramDriver pd;
 	public static String stopwordpath;
 	
@@ -156,7 +158,9 @@ public class UserInterface {
 		progressbar = new JProgressBar();
 		progressbar.setIndeterminate(false);
 		progressbar.setVisible(false);
-		resultpanel.add(resultarea);
+		scrollpane = new JScrollPane();
+		scrollpane.setViewportView(resultarea);
+		resultpanel.add(scrollpane);
 		resultpanel.add(progressbar);
 		mainpanel.setLayout(new BorderLayout());
 		mainpanel.add(tabbedpane);

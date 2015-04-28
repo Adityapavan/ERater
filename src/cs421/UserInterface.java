@@ -37,7 +37,7 @@ import javax.swing.border.LineBorder;
  */
 public class UserInterface {
 	//Maintains the declarations to all the UI elements
-	public static int MODE = 0;
+	public static int MODE = 1;
 	public static int running = 0;
 	public static String folder_path = null;
 	public static JPanel mainpanel,selectionpanel,resultpanel,radiopanel,infopanel, filepanel, runpanel; 
@@ -84,10 +84,10 @@ public class UserInterface {
 		radiopanel = new JPanel();
 		radiogroup = new ButtonGroup();
 		trainradio = new JRadioButton("Train Mode");
-		trainradio.setSelected(true);
 		trainradio.addItemListener(new RadioListener());
 		testradio = new JRadioButton("Test Mode");
 		testradio.addItemListener(new RadioListener());
+		testradio.setSelected(true);
 		radiogroup.add(trainradio);
 		radiogroup.add(testradio);
 		
@@ -110,13 +110,13 @@ public class UserInterface {
         
         //Initializes the instruction set for the users. By default it is set to training. Users can change later on according to the need
         
-        infolabel.setText("You are in TRAIN MODE. \n\n"
-        		+ "Selecting train mode lets you train a set of essays. \n\n"
-        		+ "To train essays: \n\n 1.Choose the directory containing training documents. "
-        		+ "The documents should be in txt format."
-        		+ "\n\n 2. The program will extract the essays in text files for training."
+        infolabel.setText("You are in TEST MODE. \n\n"
+				+ "Testing uses trained models to proceed forward.  "
+				+ "A default trained model is available for the program. So, no need to always run Train mode before Test mode. \n\n"
+				+ "To test essays: \n\n 1.Choose the directory containing essays."
+				+ "\n\n 2. The program will extract the essays in text files."
         		+ "\n\n 3. Click on proceed button."
-        		+ "\n\n 4. The result will be dislayed in the adjacent tab ");
+				+ "\n\n 4. The result will be displayed in the adjacent tab. ");
         infopanel.add(infolabel);
 		selectionpanel.add(infopanel);
 		

@@ -23,16 +23,16 @@ public class ProgramDriver implements Runnable{
 	 * @param folder_path : path to the folder containing training documents in text format
 	 */
 	public void Train(){
-		UserInterface.resultarea.append("You chose to train the documents..\n");
-		UserInterface.resultarea.append("Training the documents in the folder: " + this.folder_path + "\n");
+//		UserInterface.resultarea.append("You chose to train the documents..\n");
+//		UserInterface.resultarea.append("Training the documents in the folder: " + this.folder_path + "\n");
 		Thread trainthread = new Thread(new Runnable(){
 			public void run() {
-				UserInterface.tabbedpane.setSelectedIndex(1);
-				UserInterface.progressbar.setIndeterminate(true);
-				UserInterface.progressbar.setVisible(true);
-				UserInterface.resultarea.append("Loading data..\n");
-				UserInterface.resultarea.append("Parsing Raw Data..\n");
-				UserInterface.resultarea.append("Running Training modules..\n");
+//				UserInterface.tabbedpane.setSelectedIndex(1);
+//				UserInterface.progressbar.setIndeterminate(true);
+//				UserInterface.progressbar.setVisible(true);
+//				UserInterface.resultarea.append("Loading data..\n");
+//				UserInterface.resultarea.append("Parsing Raw Data..\n");
+//				UserInterface.resultarea.append("Running Training modules..\n");
 				
 				try {
 					Trainer tr = new Trainer(folder_path);
@@ -44,8 +44,8 @@ public class ProgramDriver implements Runnable{
 					e.printStackTrace();
 				}
 				
-				UserInterface.progressbar.setIndeterminate(false);
-				UserInterface.resultarea.append("Finished training..\n");
+//				UserInterface.progressbar.setIndeterminate(false);
+//				UserInterface.resultarea.append("Finished training..\n");
 			}
 		});
 		trainthread.start();	
@@ -58,14 +58,14 @@ public class ProgramDriver implements Runnable{
 	 * @throws InterruptedException
 	 */
 	public void Test() throws IOException, InterruptedException{
-		UserInterface.resultarea.append("You chose to test the documents..\n");
-		UserInterface.resultarea.append("Testing the documents in the folder: " + this.folder_path + "\n");
+//		UserInterface.resultarea.append("You chose to test the documents..\n");
+//		UserInterface.resultarea.append("Testing the documents in the folder: " + this.folder_path + "\n");
 		
 		Thread testthread = new Thread(new Runnable(){
 			public void run(){
-				UserInterface.tabbedpane.setSelectedIndex(1);
-				UserInterface.progressbar.setIndeterminate(true);
-				UserInterface.progressbar.setVisible(true);
+//				UserInterface.tabbedpane.setSelectedIndex(1);
+//				UserInterface.progressbar.setIndeterminate(true);
+//				UserInterface.progressbar.setVisible(true);
 				
 				try {
 					Tester tr = new Tester(folder_path);
@@ -77,8 +77,8 @@ public class ProgramDriver implements Runnable{
 					e.printStackTrace();
 				}
 				
-				UserInterface.resultarea.append("Finished Testing..\n");
-				UserInterface.progressbar.setIndeterminate(false);
+//				UserInterface.resultarea.append("Finished Testing..\n");
+//				UserInterface.progressbar.setIndeterminate(false);
 			}
 		});
 		testthread.start();
@@ -89,8 +89,8 @@ public class ProgramDriver implements Runnable{
 	 * Exits with return 0
 	 */
 	public void stop(){
-		UserInterface.tabbedpane.setSelectedIndex(1);
-		UserInterface.progressbar.setIndeterminate(false);
+//		UserInterface.tabbedpane.setSelectedIndex(1);
+//		UserInterface.progressbar.setIndeterminate(false);
 		System.exit(0);
 	}
 	

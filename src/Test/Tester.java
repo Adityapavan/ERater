@@ -57,9 +57,10 @@ public class Tester {
 			float a_2 = 0.0f;
 			float b_2 = 0.0f;
 			float a_3 = scorer.Score3a(sentences.length, average_length);
-			float final_score = a_1 + b_1 + c_1 +2*d_1 + 2*a_2 + 3*b_2 + 2*a_3;  
-////			UserInterface.resultarea.append(test_file.getName() + "     " + a_1 + "\t" + b_1 + "\t" + c_1 + "\t" + d_1 + "\t" + a_2 + "\t" + b_2 + "\t" + a_3 + "\t" + final_score + "\n");
-			pt.println(test_file.getName() + "    " + a_1 + "    " + b_1 + "    " + c_1 + "    " + d_1 + "    " + a_2 + "    " + b_2 + "    " + a_3 + "    " + final_score);
+			float final_score = a_1 + b_1 + c_1 +2*d_1 + 2*a_2 + 3*b_2 + 2*a_3; 
+			String tag = scorer.finalTag(final_score, a_3);
+////			UserInterface.resultarea.append(test_file.getName() + "     " + a_1 + "\t" + b_1 + "\t" + c_1 + "\t" + d_1 + "\t" + a_2 + "\t" + b_2 + "\t" + a_3 + "\t" + final_score +  + "\t" + tag + "\n");
+			pt.println(test_file.getName() + "    " + a_1 + "    " + b_1 + "    " + c_1 + "    " + d_1 + "    " + a_2 + "    " + b_2 + "    " + a_3 + "    " + final_score + "    " + tag);
 		}
 		pt.close();
 	}

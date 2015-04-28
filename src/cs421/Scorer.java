@@ -29,4 +29,20 @@ public class Scorer {
 		}
 		return score;
 	}
+	
+	public String finalTag(float score, float a3){
+		if(score < 18.64){
+			if(a3 < 5.0){
+				return "low";
+			}
+			else{
+				return "medium";
+			}
+		}else if(score > 18.64 && score < 20.0){
+			if(a3 <= 5.0){
+				return "medium";
+			}
+		}
+		return "high";
+	}
 }

@@ -1,31 +1,57 @@
 package cs421;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.List;
+import java.util.Properties;
 
-import opennlp.tools.cmdline.parser.ParserTool;
-import opennlp.tools.parser.Parse;
-import opennlp.tools.parser.Parser;
-import opennlp.tools.parser.ParserFactory;
-import opennlp.tools.parser.ParserModel;
-import opennlp.tools.util.InvalidFormatException;
+import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
+import edu.stanford.nlp.pipeline.Annotation;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.trees.Tree;
+import edu.stanford.nlp.trees.TreeCoreAnnotations.TreeAnnotation;
+import edu.stanford.nlp.util.CoreMap;
+
 
 public class SParser {
-	private InputStream is;
-	private ParserModel model;
-	private Parser parser;
+	private Properties props;
+	public StanfordCoreNLP pipeline;
+	private Annotation document;
+	private List<CoreMap> sentence;
 	
-	public SParser() throws InvalidFormatException, IOException{
-		this.is = new FileInputStream("resources\\en-parser-chunking.bin");
-		this.model = new ParserModel(is);
-		this.parser = ParserFactory.create(model);
+	public SParser() throws IOException{
+		this.props = new Properties();
+		this.props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse");
+		pipeline = new StanfordCoreNLP(props);
 	}
 	
-	public void parse(String sentence) throws IOException{
-		Parse topParses[] = ParserTool.parseLine(sentence, parser, 1);
-		for (Parse p : topParses)
-			p.show();
-		is.close();
+	public SParser(String coref) throws IOException{
+		this.props = new Properties();
+		this.props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");
+		pipeline = new StanfordCoreNLP(props);
 	}
+	
+//	public void Parse(String sentence){			
+//		opennlp.tools.parser.Parse topParses[] = ParserTool.parseLine(sentence, parser, 1);
+//		for (opennlp.tools.parser.Parse p : topParses){
+//			p.show();	
+//		}
+//	}
+	
+	public Tree getParseTree(String text){
+		Tree tree = null;
+		document = new Annotation(text);
+	    // run all Annotators on this text
+	    pipeline.annotate(document);
+
+	    // these are all the sentences in this document
+	    // a CoreMap is essentially a Map that uses class objects as keys and has values with custom types
+	    sentence = document.get(SentencesAnnotation.class);
+
+	    for(CoreMap sent: sentence) {
+	      // this is the parse tree of the current sentence
+	      tree = sent.get(TreeAnnotation.class);
+	    }
+	    return tree;
+	}
+	
 }

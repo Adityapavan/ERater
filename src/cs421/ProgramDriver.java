@@ -76,7 +76,7 @@ public class ProgramDriver implements Runnable{
 				catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				}
-				
+				System.out.println("finished testing");
 //				UserInterface.resultarea.append("Finished Testing..\n");
 //				UserInterface.progressbar.setIndeterminate(false);
 			}

@@ -83,16 +83,16 @@ public class UserInterface {
 		
 		radiopanel = new JPanel();
 		radiogroup = new ButtonGroup();
+		testradio = new JRadioButton("Test Mode");
+		testradio.setSelected(true);
+		testradio.addItemListener(new RadioListener());
 		trainradio = new JRadioButton("Train Mode");
 		trainradio.addItemListener(new RadioListener());
-		testradio = new JRadioButton("Test Mode");
-		testradio.addItemListener(new RadioListener());
-		testradio.setSelected(true);
-		radiogroup.add(trainradio);
-		radiogroup.add(testradio);
 		
-		radiopanel.add(trainradio);
+		radiogroup.add(testradio);
+		radiogroup.add(trainradio);
 		radiopanel.add(testradio);
+		radiopanel.add(trainradio);
 		selectionpanel.add(radiopanel);
 		
 		infopanel = new JPanel();

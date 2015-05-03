@@ -19,6 +19,7 @@ We will use this branch for working on our project
    - In the list, expand Git, select projects from git, select clone URI
    - Get the URI from your github account (this has to be done after forking your online repo)
    - input your details
+   - while selecting branch, select shared and change remote nane from origin to shared as well
    - finish the next steps
    
 3) Setting up working java project
@@ -32,5 +33,20 @@ We will use this branch for working on our project
    - Click finish
    - When your run the project, it runs
 
- 4) Congratulations !! Continue coding.
+
+4) to commit to local repository: (this will update your work on your machine)
+   - right click on project 
+   - select team > commit
+   - check the files to be commited, comment your work
+   - finish
+   
+5) to push to remote repository (this will update your work on your online account)
+   - right click on project
+   - select team > remote > push
+   - update the source ref to shared and destination ref to shared as well
+   - click on add spec
+   - next > finish
+   - your online repo can find your changes
+   
+6) Congratulations !! Continue coding.
  

@@ -1,9 +1,8 @@
 package cs421;
-import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Comparator;
+
+import Test.Tester;
+import Train.Trainer;
 
 /**
  * This is the entry point to back end processing. The program Driver class implements runnable thread,
@@ -14,7 +13,6 @@ import java.util.Comparator;
 public class ProgramDriver implements Runnable{
 	int mode;
 	String folder_path;
-	ProcessBuilder pb;
 	public ProgramDriver(int mode, String folder_path){
 		this.mode = mode;
 		this.folder_path = folder_path;
@@ -24,17 +22,27 @@ public class ProgramDriver implements Runnable{
 	 * When the users select Train mode, the training function is called by the ProgramDriver class 
 	 * @param folder_path : path to the folder containing training documents in text format
 	 */
-	public void Train(String folder_path){
-		UserInterface.resultarea.append("You chose to train the documents..\n");
-		UserInterface.resultarea.append("Training the documents in the folder: " + UserInterface.folder_path + "\n");
+	public void Train(){
+//		UserInterface.resultarea.append("You chose to train the documents..\n");
+//		UserInterface.resultarea.append("Training the documents in the folder: " + this.folder_path + "\n");
 		Thread trainthread = new Thread(new Runnable(){
 			public void run() {
-				UserInterface.tabbedpane.setSelectedIndex(1);
-				UserInterface.progressbar.setIndeterminate(true);
-				UserInterface.progressbar.setVisible(true);
-				UserInterface.resultarea.append("Parsing Raw Data..\n");
+//				UserInterface.tabbedpane.setSelectedIndex(1);
+//				UserInterface.progressbar.setIndeterminate(true);
+//				UserInterface.progressbar.setVisible(true);
+//				UserInterface.resultarea.append("Loading data..\n");
+//				UserInterface.resultarea.append("Parsing Raw Data..\n");
+//				UserInterface.resultarea.append("Running Training modules..\n");
 				
-				//changes done here
+				try {
+					Trainer tr = new Trainer(folder_path);
+					tr.getScores();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
 				
 //				UserInterface.progressbar.setIndeterminate(false);
 //				UserInterface.resultarea.append("Finished training..\n");
@@ -49,17 +57,25 @@ public class ProgramDriver implements Runnable{
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	public void Test(String folder_path) throws IOException, InterruptedException{
-		UserInterface.resultarea.append("You chose to test the documents..\n");
+	public void Test() throws IOException, InterruptedException{
+//		UserInterface.resultarea.append("You chose to test the documents..\n");
+//		UserInterface.resultarea.append("Testing the documents in the folder: " + this.folder_path + "\n");
 		
 		Thread testthread = new Thread(new Runnable(){
 			public void run(){
-				// update the result area according to the progress and steps being performed
-				UserInterface.tabbedpane.setSelectedIndex(1);
-				UserInterface.progressbar.setIndeterminate(true);
-				UserInterface.progressbar.setVisible(true);
+//				UserInterface.tabbedpane.setSelectedIndex(1);
+//				UserInterface.progressbar.setIndeterminate(true);
+//				UserInterface.progressbar.setVisible(true);
 				
-				//changes done here
+				try {
+					Tester tr = new Tester(folder_path);
+					tr.getScores();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
 				
 //				UserInterface.resultarea.append("Finished Testing..\n");
 //				UserInterface.progressbar.setIndeterminate(false);
@@ -69,12 +85,12 @@ public class ProgramDriver implements Runnable{
 	}
 	
 	/**
-	 * When users wish to stop the operatios, checks for executing java processes and kills them,
+	 * When users wish to stop the operations, checks for executing java processes and kills them,
 	 * Exits with return 0
 	 */
 	public void stop(){
-		UserInterface.tabbedpane.setSelectedIndex(1);
-		UserInterface.progressbar.setIndeterminate(false);
+//		UserInterface.tabbedpane.setSelectedIndex(1);
+//		UserInterface.progressbar.setIndeterminate(false);
 		System.exit(0);
 	}
 	
@@ -83,11 +99,11 @@ public class ProgramDriver implements Runnable{
 	 */
 	public void run() {
 		if(mode == 0){
-			Train(folder_path);
+			Train();
 		}
 		if(mode == 1){
 			try {
-				Test(folder_path);
+				Test();
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (InterruptedException e) {
